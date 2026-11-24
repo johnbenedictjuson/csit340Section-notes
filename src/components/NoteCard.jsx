@@ -10,8 +10,8 @@ function NoteCard({ id, title, body, onDelete }) {
       <h3
         className={
           largeText
-            ? 'pr-8 text-[28px] font-normal break-words'
-            : 'pr-8 text-[22px] font-normal break-words'
+            ? 'pr-6 text-[22px] font-normal break-words'
+            : 'pr-6 text-[17px] font-normal break-words'
         }
       >
         {title}
@@ -20,8 +20,8 @@ function NoteCard({ id, title, body, onDelete }) {
         <p
           className={
             largeText
-              ? 'mt-3 text-[21px] break-words whitespace-pre-wrap text-[#4d4d4d]'
-              : 'mt-3 text-[17px] break-words whitespace-pre-wrap text-[#4d4d4d]'
+              ? 'mt-2 text-[18px] break-words whitespace-pre-wrap text-[#4d4d4d]'
+              : 'mt-2 text-[14px] break-words whitespace-pre-wrap text-[#4d4d4d]'
           }
         >
           {body}
@@ -30,14 +30,14 @@ function NoteCard({ id, title, body, onDelete }) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="mt-3 cursor-pointer text-[14px] text-[#b83f45] underline"
+        className="mt-2 cursor-pointer text-[11px] text-[#b83f45] underline"
       >
         {isOpen ? 'Show less' : 'Show more'}
       </button>
       <button
         type="button"
         onClick={() => onDelete(id)}
-        className="absolute top-4 right-5 cursor-pointer text-[26px] leading-none text-[#949494] hover:text-[#c18585]"
+        className="absolute top-2 right-3 cursor-pointer text-[20px] leading-none text-[#949494] hover:text-[#c18585]"
       >
         ×
       </button>

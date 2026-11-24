@@ -5,7 +5,7 @@ function Info({ name }) {
   const { largeText, setLargeText } = useContext(SettingsContext)
 
   return (
-    <footer className="fixed bottom-7 left-8 z-10 text-[13px] text-[#949494]">
+    <footer className="fixed bottom-7 left-10 z-10 text-[11px] text-[#949494]">
       <button
         type="button"
         onClick={() => setLargeText(!largeText)}

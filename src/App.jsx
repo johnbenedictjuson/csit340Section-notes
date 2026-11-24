@@ -15,9 +15,11 @@ function App() {
 
   return (
     <SettingsContext value={{ largeText, setLargeText }}>
-      <div className="bg-[#f5f5f5] font-light text-[#111]">
-        <Notes />
-        <Info name="Your Name Here" />
+      <div className="min-h-screen bg-[#f1efee] p-5 font-light text-[#111]">
+        <div className="flex min-h-[calc(100vh-40px)] overflow-hidden rounded-xl border border-[#e3dedc] bg-[#f4f4f4]">
+          <Notes />
+          <Info name="John Benedict Juson" />
+        </div>
       </div>
     </SettingsContext>
   )

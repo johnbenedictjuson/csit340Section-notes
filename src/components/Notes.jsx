@@ -65,63 +65,65 @@ function Notes() {
   }, [notes, search])
 
   return (
-    <main className="mx-auto max-w-[550px] px-4 pt-10 pb-24">
-      <h1 className="mb-6 text-center text-[80px] font-extralight text-[#b83f45]">
-        notes
-      </h1>
+    <div className="flex flex-1">
+      <aside className="w-64 shrink-0 bg-white px-5 pt-5 shadow-[2px_0_6px_0_rgba(0,0,0,0.12)]">
+        <h1 className="text-[56px] leading-none font-extralight text-[#b83f45]">
+          notes
+        </h1>
 
-      <form
-        onSubmit={handleAdd}
-        className="mb-6 bg-white px-6 py-5 shadow-[0_2px_4px_0_rgba(0,0,0,0.2),0_25px_50px_0_rgba(0,0,0,0.1)]"
-      >
-        <p className="text-[13px] font-normal tracking-wide text-[#949494]">NEW NOTE</p>
+        <p className="mt-5 text-[10px] tracking-wide text-[#949494]">SEARCH</p>
         <input
-          ref={titleRef}
-          name="title"
-          value={form.title}
-          onChange={handleChange}
-          placeholder="Title"
-          className="mt-2 w-full border-b border-[#ededed] py-2 text-[19px] outline-none focus:border-[#b83f45]"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search by title"
+          className="mt-1 w-full border border-[#ededed] px-2 py-2 text-[13px] outline-none placeholder:italic focus:border-[#b83f45]"
         />
-        <textarea
-          name="body"
-          value={form.body}
-          onChange={handleChange}
-          placeholder="Write your note..."
-          rows={3}
-          className="mt-3 w-full border border-[#ededed] p-2 text-[16px] outline-none focus:border-[#b83f45]"
-        />
-        <button
-          type="submit"
-          className="mt-3 cursor-pointer bg-[#b83f45] px-4 py-2 text-[15px] text-white hover:opacity-90"
-        >
-          Add note
-        </button>
-      </form>
 
-      <input
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search by title"
-        className="mb-6 w-full bg-white px-4 py-3 text-[17px] shadow-[0_2px_4px_0_rgba(0,0,0,0.2)] outline-none"
-      />
-
-      <ul className="space-y-4">
-        {visibleNotes.map((note) => (
-          <li
-            key={note.id}
-            className="relative min-h-32 bg-white px-6 py-5 shadow-[0_2px_4px_0_rgba(0,0,0,0.2),0_25px_50px_0_rgba(0,0,0,0.1)]"
+        <form onSubmit={handleAdd}>
+          <p className="mt-5 text-[10px] tracking-wide text-[#949494]">NEW NOTE</p>
+          <input
+            ref={titleRef}
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+            placeholder="Title"
+            className="mt-1 w-full border border-[#ededed] px-2 py-2 text-[13px] outline-none placeholder:italic focus:border-[#b83f45]"
+          />
+          <textarea
+            name="body"
+            value={form.body}
+            onChange={handleChange}
+            placeholder="Write your note"
+            className="mt-2 h-24 w-full resize-none border border-[#ededed] px-2 py-2 text-[13px] outline-none placeholder:italic focus:border-[#b83f45]"
+          />
+          <button
+            type="submit"
+            className="w-full cursor-pointer bg-[#b83f45] py-1.5 text-[12px] text-white hover:opacity-90"
           >
-            <NoteCard
-              id={note.id}
-              title={note.title}
-              body={note.body}
-              onDelete={handleDelete}
-            />
-          </li>
-        ))}
-      </ul>
-    </main>
+            Add note
+          </button>
+        </form>
+      </aside>
+
+      <main className="flex-1 p-6">
+        <h2 className="mb-4 text-[20px] font-normal">All notes</h2>
+        <ul className="flex flex-wrap items-start gap-4">
+          {visibleNotes.map((note) => (
+            <li
+              key={note.id}
+              className="relative w-[300px] bg-white px-4 py-3 shadow-[0_2px_4px_0_rgba(0,0,0,0.2),0_25px_50px_0_rgba(0,0,0,0.1)]"
+            >
+              <NoteCard
+                id={note.id}
+                title={note.title}
+                body={note.body}
+                onDelete={handleDelete}
+              />
+            </li>
+          ))}
+        </ul>
+      </main>
+    </div>
   )
 }
 
