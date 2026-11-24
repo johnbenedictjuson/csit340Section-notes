@@ -1,30 +1,48 @@
+import { useState, useContext, memo } from 'react'
+import { SettingsContext } from '../SettingsContext.js'
 
-import { useState } from 'react'
-
-function NoteCard({ title, body, defaultExpanded = false }) {
-  const [showMore, setShowMore] = useState(defaultExpanded)
+function NoteCard({ id, title, body, onDelete }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const { largeText } = useContext(SettingsContext)
 
   return (
     <div>
-      <h3 className="pr-4 text-[9px] font-medium text-[#333]">
+      <h3
+        className={
+          largeText
+            ? 'pr-8 text-[28px] font-normal break-words'
+            : 'pr-8 text-[22px] font-normal break-words'
+        }
+      >
         {title}
       </h3>
-
-      {showMore && (
-        <p className="mt-2 text-[8px] leading-[11px] text-[#666]">
+      {isOpen && (
+        <p
+          className={
+            largeText
+              ? 'mt-3 text-[21px] break-words whitespace-pre-wrap text-[#4d4d4d]'
+              : 'mt-3 text-[17px] break-words whitespace-pre-wrap text-[#4d4d4d]'
+          }
+        >
           {body}
         </p>
       )}
-
       <button
         type="button"
-        onClick={() => setShowMore(!showMore)}
-        className="mt-2 cursor-pointer text-[8px] text-[#b83f45] underline"
+        onClick={() => setIsOpen(!isOpen)}
+        className="mt-3 cursor-pointer text-[14px] text-[#b83f45] underline"
       >
-        {showMore ? 'Show less' : 'Show more'}
+        {isOpen ? 'Show less' : 'Show more'}
+      </button>
+      <button
+        type="button"
+        onClick={() => onDelete(id)}
+        className="absolute top-4 right-5 cursor-pointer text-[26px] leading-none text-[#949494] hover:text-[#c18585]"
+      >
+        ×
       </button>
     </div>
   )
 }
 
-export default NoteCard
+export default memo(NoteCard)
